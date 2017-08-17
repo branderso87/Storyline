@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
-import './styles/css'
+import '../styles/index.css'
 import {NavLink} from 'react-router-dom'
 
-export default class BaseLayout extends Component {
+class BaseLayout extends Component {
   render () {
     return (
       <div>
@@ -10,7 +10,8 @@ export default class BaseLayout extends Component {
           <nav>
             <NavLink className='mainNav' to='/'>Storyline</NavLink>
             <ul>
-              <li><NavLink className='mainNav' to='/storymap/:id'>New Story Map</NavLink></li>
+              <li><NavLink className='mainNav' to='/storymap'>New Story Map</NavLink></li>
+              <li><NavLink className='mainNav' to='/about'>About</NavLink></li>
               <li><NavLink className='mainNav' to='/login'>Login</NavLink></li>
               <li><NavLink className='mainNav' to='/profile'>Profile</NavLink></li>
               <li><NavLink className='mainNav' to='/logout'>Logout</NavLink></li>
@@ -24,3 +25,4 @@ export default class BaseLayout extends Component {
     )
   }
 }
+export default BaseLayout

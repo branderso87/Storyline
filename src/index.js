@@ -1,14 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import '.styles/index.css'
+import './styles/index.css'
 import registerServiceWorker from './registerServiceWorker'
 
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
-import {BaseLayout} from './component/BaseLayout'
-import {Home} from './component/Home'
-import {Profile} from './component/Profile'
-import {StoryMap} from './component/StoryMap'
-import {About} from './component/About'
+import BaseLayout from './components/BaseLayout'
+import Home from './components/Home'
+import Profile from './components/Profile'
+import StoryMap from './components/StoryMap'
+import About from './components/About'
 
 ReactDOM.render(
   <BrowserRouter>
