@@ -415,13 +415,16 @@ class StoryLines extends Component {
       }
     })
 
-    cy.on('tap', 'node', function () {
-      try { // your browser may block popups
-        window.open(this.data('href'))
-      } catch (e) { // fall back on url change
-        window.location.href = this.data('href')
-        }
-      })
+    // cy.on('tap', 'node', function () {
+    //   try { // your browser may block popups
+    //     window.open(this.data('href'))
+    //   } catch (e) { // fall back on url change
+    //     window.location.href = this.data('href')
+    //     }
+    //   })
+    cy.on('tap', 'node.majorPlotPoint', () => {
+      cy.add({group: 'nodes', data: {'id': 'new', 'name': 'new'}})
+    })
   }
   componentDidMount () {
      this.displayCy()
