@@ -116,9 +116,13 @@ class StoryLines extends Component {
     //on tap
     //add node with {data: {new.data.id, name: new.data.name, text: new.data.text}, class: new.data.class, position: position of tapped +}.
 
-    cy.nodes('majorPlotPoint').forEach(function () {
+    cy.nodes('node.majorPlotPoint').forEach(function () {
       cy.on('tap', () => {
-      cy.add({group: 'nodes', data: {'id': 'new', 'name': 'new'}, 'classes': 'majorPlotPoint', 'position': {x: 0, y: -100}})
+        let id = 1
+        let newId = (id) => {
+          id += 1
+        }
+      cy.add({group: 'nodes', data: {'id': id, 'name': 'new'}, 'classes': 'majorPlotPoint', 'position': {x: 0, y: -100}})
       })
     })
   }
