@@ -4,7 +4,7 @@ import '../styles/index.css'
 import '../images/addLrgNodeIcon.svg'
 import '../images/addSMLNodeIcon.svg'
 import edgesEle from '../data/edgesEle.js'
-import nodeEle from '../data/nodeEle'
+import nodeEle from '../data/nodeEle.js'
 
 class StoryLines extends Component {
   constructor (props) {
@@ -87,8 +87,9 @@ class StoryLines extends Component {
           .css({
             'line-color': '#F2187D'
           }),
-          
-      elements: {nodeEle, edgesEle},
+      elements:
+      nodeEle,
+      edgesEle,
 
       layout: {
         name: 'preset',
@@ -106,8 +107,19 @@ class StoryLines extends Component {
     //     window.location.href = this.data('href')
     //     }
     //   })
-    cy.on('tap', 'node.majorPlotPoint', () => {
-      cy.add({group: 'nodes', data: {'id': 'new', 'name': 'new'}, 'classes': 'majorPlotPoint', 'position': {x: 0, y: - 100}})
+
+    // cy.on('tap', 'node.majorPlotPoint', () => {
+    //   cy.add({group: 'nodes', data: {'id': 'new', 'name': 'new'}, 'classes': 'majorPlotPoint', 'position': {x: 0, y: -100}})
+    // })
+
+    //For all nodes that are +,
+    //on tap
+    //add node with {data: {new.data.id, name: new.data.name, text: new.data.text}, class: new.data.class, position: position of tapped +}.
+
+    cy.nodes('majorPlotPoint').forEach(function () {
+      cy.on('tap', () => {
+      cy.add({group: 'nodes', data: {'id': 'new', 'name': 'new'}, 'classes': 'majorPlotPoint', 'position': {x: 0, y: -100}})
+      })
     })
   }
   componentDidMount () {

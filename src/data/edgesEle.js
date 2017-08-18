@@ -1,3 +1,5 @@
+import nodeEle from '../data/nodeEle.js'
+
 let edgesEle = {
   edges: [
     { data: {
