@@ -116,15 +116,15 @@ class StoryLines extends Component {
     //on tap
     //add node with {data: {new.data.id, name: new.data.name, text: new.data.text}, class: new.data.class, position: position of tapped +}.
 
-    cy.nodes('node.majorPlotPoint').forEach(function () {
-      cy.on('tap', () => {
-        let id = 1
-        let newId = (id) => {
-          id += 1
-        }
-      cy.add({group: 'nodes', data: {'id': id, 'name': 'new'}, 'classes': 'majorPlotPoint', 'position': {x: 0, y: -100}})
-      })
-    })
+    // cy.nodes('node.majorPlotPoint').forEach(function () {
+    //   cy.on('tap', () => {
+    //     let id = 1
+    //     let newId = (id) => {
+    //       id += 1
+    //     }
+    //   cy.add({group: 'nodes', data: {'id': id, 'name': 'new'}, 'classes': 'majorPlotPoint', 'position': {x: 0, y: -100}})
+    //   })
+    // })
   }
   componentDidMount () {
      this.displayCy()
