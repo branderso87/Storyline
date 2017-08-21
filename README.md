@@ -22,6 +22,6 @@ An app spawned from the desire to truly "see" stories as they develop, Storyline
 ## Install
 
 To run on your own system:
-  * clone repo
-  * yarn add
-  * yarn start
+  *clone repo
+  *yarn add
+  *yarn start
