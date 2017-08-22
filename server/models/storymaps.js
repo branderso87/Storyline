@@ -6,6 +6,7 @@ module.exports = function (sequelize, DataTypes) {
   }, {})
   storymaps.associate(function (models) {
     storymaps.belongsTo(models.users, { as: 'user', foreignKey: 'userId' })
+    storymaps.hasMany(models.storylines, { as: 'lines', foreignKey: 'mapId' })
   })
 
   return storymaps

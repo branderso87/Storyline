@@ -7,12 +7,10 @@ module.exports = function (sequelize, DataTypes) {
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
     img: DataTypes.STRING
-  }, {
-    classMethods: {
-      associate: function (models) {
-        // associations can be defined here
-      }
-    }
+  }, {})
+  users.associate(function (models) {
+    users.hasMany(models.storymaps, { as: 'maps', foreignKey: 'userId' })
   })
+
   return users
 }
