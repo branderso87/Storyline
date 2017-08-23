@@ -10,8 +10,8 @@ module.exports = function(sequelize, DataTypes) {
     img: DataTypes.STRING,
     link: DataTypes.STRING
   }, {})
-  plotpoints.associate(function (models) {
-    plotpoints.hasMany(models.storylines, { as: 'lines', through: 'join_story_points', foreignKey: 'SL_ID' })
-  })
+  plotpoints.associate = function (models) {
+    plotpoints.belongsToMany(models.storylines, { as: 'lines', through: 'join_story_points', foreignKey: 'SL_ID' })
+  }
   return plotpoints
 }

@@ -8,9 +8,9 @@ module.exports = function (sequelize, DataTypes) {
     lastName: DataTypes.STRING,
     img: DataTypes.STRING
   }, {})
-  users.associate(function (models) {
+  users.associate = function (models) {
     users.hasMany(models.storymaps, { as: 'maps', foreignKey: 'userId' })
-  })
+  }
 
   return users
 }
