@@ -65,7 +65,7 @@ app.post('/api/user/:id/new_map', (req, res) => {
     })
   })
 
-}
+})
 // Post to create new storyline
 // Post to create new plotpoint
 // Post to delete storymap
