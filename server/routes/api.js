@@ -1,10 +1,15 @@
 const express = require('express')
-const app = express()
 const router = express.Router()
 const models = require('../models')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 
-app.use(bodyParser.urlencoded({ extended: false }))
+router.use(bodyParser.urlencoded({ extended: false }))
+// app.use(cors())
+// app.use((req, res, next) => {
+//   res.setHeader('content-type', 'application/json')
+//   next()
+// })
 // Get to see all users info
 router.get('/api/users', (req, res) => {
   models.users.findAll()
@@ -31,17 +36,17 @@ router.get('/api/users/:id/storymaps', (req, res) => {
   }).then(user => {
     models.storymaps.findOne({
       where: {
+        //some shit happens
 
       }
     })
   })
-
-    // where user id = :id
-
-    // and give me all the maps for that use
 })
+
+
 // Post to create new user
-app.post('/api/registration', (req, res) => {
+router.post('/api/registration', (req, res, next) => {
+  console.log('New User')
   models.users.create({
     username: req.body.username,
     email: req.body.email,
@@ -53,7 +58,7 @@ app.post('/api/registration', (req, res) => {
   res.status(201)
 })
 // Post to create new storymap
-app.post('/api/user/:id/new_map', (req, res) => {
+router.post('/api/user/:id/newmap', (req, res) => {
   models.users.findOne({
     where: {
       id: req.params.users
