@@ -10,6 +10,7 @@ router.use(bodyParser.urlencoded({ extended: false }))
 //   res.setHeader('content-type', 'application/json')
 //   next()
 // })
+
 // Get to see all users info
 router.get('/api/users', (req, res) => {
   models.users.findAll()
@@ -52,8 +53,8 @@ router.post('/api/registration', (req, res, next) => {
     username: req.body.username,
     email: req.body.email,
     password: req.body.password,
-    firstName: req.body.firstname,
-    lastName: req.body.lastname,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
     img: req.body.img
   })
   res.status(201)
@@ -65,7 +66,6 @@ router.post('/api/users/:id/newmap', (req, res) => {
       id: req.params.id
     }
   }).then(user => {
-    console.log('it worked!')
     models.storymaps.create({
       name: req.body.name,
       description: req.body.description,
