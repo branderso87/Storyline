@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const models = require('../models')
 const bodyParser = require('body-parser')
-const cors = require('cors')
+// const cors = require('cors')
 
 router.use(bodyParser.urlencoded({ extended: false }))
 // app.use(cors())
@@ -21,7 +21,7 @@ router.get('/api/users', (req, res) => {
 router.get('/api/users/:id', (req, res) => {
   models.users.findOne({
     where: {
-      id: req.params.users
+      id: req.params.id
     }
   }).then(user => {
     res.json(user)
@@ -31,14 +31,15 @@ router.get('/api/users/:id', (req, res) => {
 router.get('/api/users/:id/storymaps', (req, res) => {
   models.users.findOne({
     where: {
-      id: req.params.users
+      id: req.params.id
     }
   }).then(user => {
     models.storymaps.findOne({
       where: {
-        //some shit happens
-
+        userId: user.id
       }
+    }).then(maps => {
+      res.json(maps)
     })
   })
 })
@@ -51,25 +52,27 @@ router.post('/api/registration', (req, res, next) => {
     username: req.body.username,
     email: req.body.email,
     password: req.body.password,
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
+    firstName: req.body.firstname,
+    lastName: req.body.lastname,
     img: req.body.img
   })
   res.status(201)
 })
 // Post to create new storymap
-router.post('/api/user/:id/newmap', (req, res) => {
+router.post('/api/users/:id/newmap', (req, res) => {
   models.users.findOne({
     where: {
-      id: req.params.users
+      id: req.params.id
     }
   }).then(user => {
+    console.log('it worked!')
     models.storymaps.create({
       name: req.body.name,
-      description: req.body.description
+      description: req.body.description,
+      userId: user.id
     })
   })
-
+  res.status(201)
 })
 // Post to create new storyline
 // Post to create new plotpoint
