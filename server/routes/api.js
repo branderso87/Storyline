@@ -35,7 +35,7 @@ router.get('/api/users/:id/storymaps', (req, res) => {
       id: req.params.id
     }
   }).then(user => {
-    models.storymaps.findOne({
+    models.storymaps.findAll({
       where: {
         userId: user.id
       }
@@ -60,10 +60,10 @@ router.post('/api/registration', (req, res, next) => {
   res.status(201)
 })
 // Post to create new storymap
-router.post('/api/users/:id/newmap', (req, res) => {
+router.post('/api/users/:user/newmap', (req, res, next) => {
   models.users.findOne({
     where: {
-      id: req.params.id
+      id: req.params.user
     }
   }).then(user => {
     models.storymaps.create({
@@ -75,6 +75,23 @@ router.post('/api/users/:id/newmap', (req, res) => {
   res.status(201)
 })
 // Post to create new storyline
+router.post('/api/users/:user/storymaps/:map/newline', (req, res, next) => {
+  models.storymaps.findOne({
+    where: {
+      id: req.params.map,
+      userId: req.params.user
+    }
+  }).then(map => {
+      models.storylines.create({
+        name: req.body.name,
+        description: req.body.description,
+        color: req.body.color,
+        type: req.body.type,
+        mapId: map.id
+      })
+    })
+  res.status(201)
+})
 // Post to create new plotpoint
 // Post to delete storymap
 // Post to delete storyline
